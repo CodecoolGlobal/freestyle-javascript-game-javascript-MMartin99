@@ -89,9 +89,7 @@ function initLeftClick() {
                         firstPick.classList.add('hidden')
                     }, 3000)
                 }
-                counter = 0
             }
         }
     }
-
 }
