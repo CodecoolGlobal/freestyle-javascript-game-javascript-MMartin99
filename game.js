@@ -5,7 +5,7 @@ function initGame() {
     getRandomPictures()
     shuffleCards()
     initLeftClick()
-    // startTimer();
+
 }
 
 
@@ -22,7 +22,6 @@ function startTimer(){
         }
     },1000);
 }
-
 
 function moveCounter() {
     let move_count = document.querySelector(".move_count")
@@ -47,6 +46,12 @@ function getRandomPictures() {
         card.children[0].setAttribute("src", "static/images/" + randomNumber + ".png")
         counter++;
     }
+
+
+function moveCounter() {
+    let move_count = document.querySelector(".move_count")
+    moves++;
+    move_count.innerHTML = moves + " Moves";
 }
 
 
