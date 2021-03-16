@@ -41,3 +41,7 @@
     display: block;
     width: 180px;
 }
+
+img.hidden {
+    visibility: hidden;
+}
