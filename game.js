@@ -17,19 +17,9 @@ function shuffleCards() {
 
 function initLeftClick() {
     let cards = document.querySelectorAll(".card");
-    let counter = 0
     for (let card of cards) {
         card.onclick = function(event) {
             event.currentTarget.children[0].classList.remove('hidden')
-            counter++;
-            if (counter === 1) {
-                let firstPick = event.currentTarget
-            }
-
-            if (counter === 2) {
-                if (x) {}
-                else {}
-            }
         }
     }
 }
