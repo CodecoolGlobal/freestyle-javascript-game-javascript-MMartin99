@@ -5,7 +5,6 @@ function initGame() {
     getRandomPictures()
     shuffleCards()
     initLeftClick()
-
 }
 
 
@@ -34,8 +33,10 @@ function getRandomPictures() {
     let randomNumbers = []
     for (let i = 0; randomNumbers.length < 8; i++) {
         let randomNumber = Math.floor((Math.random() * 40) + 1)
-        if (randomNumbers.includes(randomNumber)) {}
-        else {randomNumbers.push(randomNumber)}
+        if (randomNumbers.includes(randomNumber)) {
+        } else {
+            randomNumbers.push(randomNumber)
+        }
     }
     let cards = document.querySelectorAll(".card");
     let counter = 1;
@@ -46,6 +47,7 @@ function getRandomPictures() {
         card.children[0].setAttribute("src", "static/images/" + randomNumber + ".png")
         counter++;
     }
+}
 
 
 function moveCounter() {
@@ -73,10 +75,8 @@ function initLeftClick() {
             if (counter === 1) {startTimer()}
             if (counter % 2 === 1) {
                 window.firstPick = event.currentTarget.children[0];
-                console.log(1)
             }
             if (counter % 2 === 0) {
-                console.log(2)
                 window.secondPick = event.currentTarget.children[0]
 
                 if (firstPick.attributes[1].value === secondPick.attributes[1].value) {
