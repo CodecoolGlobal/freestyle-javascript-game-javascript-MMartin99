@@ -2,9 +2,10 @@ initGame();
 let moves = 0;
 
 function initGame() {
+    getRandomPictures()
     shuffleCards()
     initLeftClick()
-    startTimer();
+    // startTimer();
 }
 
 
@@ -22,10 +23,30 @@ function startTimer(){
     },1000);
 }
 
+
 function moveCounter() {
     let move_count = document.querySelector(".move_count")
     moves++;
     move_count.innerHTML = moves + " Moves";
+}
+
+
+function getRandomPictures() {
+    let randomNumbers = []
+    for (let i = 0; randomNumbers.length < 8; i++) {
+        let randomNumber = Math.floor((Math.random() * 40) + 1)
+        if (randomNumbers.includes(randomNumber)) {}
+        else {randomNumbers.push(randomNumber)}
+    }
+    let cards = document.querySelectorAll(".card");
+    let counter = 1;
+    for (let card of cards) {
+        if (counter % 2 == 1) {
+            window.randomNumber = randomNumbers.pop()
+        }
+        card.children[0].setAttribute("src", "static/images/" + randomNumber + ".png")
+        counter++;
+    }
 }
 
 
@@ -44,19 +65,24 @@ function initLeftClick() {
             moveCounter()
             event.currentTarget.children[0].classList.remove('hidden');
             counter++;
-            if (counter === 1) {
+            if (counter === 1) {startTimer()}
+            if (counter % 2 === 1) {
                 window.firstPick = event.currentTarget.children[0];
+                console.log(1)
             }
-
-            if (counter === 2) {
+            if (counter % 2 === 0) {
+                console.log(2)
                 window.secondPick = event.currentTarget.children[0]
-                if (event.currentTarget === firstPick) {}
+
+                if (firstPick.attributes[1].value === secondPick.attributes[1].value) {
+                    firstPick.classList.add('matched')
+                    secondPick.classList.add('matched')
+                }
                 else {
                     setTimeout(function() {
                         secondPick.classList.add('hidden')
                         firstPick.classList.add('hidden')
                     }, 3000)
-
                 }
                 counter = 0
             }
