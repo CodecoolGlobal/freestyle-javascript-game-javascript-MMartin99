@@ -1,4 +1,5 @@
 initGame();
+let moves = 0;
 
 function initGame() {
 
@@ -19,4 +20,10 @@ function startTimer(){
             sec=0;
         }
     },1000);
+}
+
+function moveCounter(){
+    let move_count = document.querySelector(".move_count")
+    moves++;
+    move_count.innerHTML = moves+ " Moves";
 }
