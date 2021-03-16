@@ -1,6 +1,14 @@
 initGame();
 let moves = 0;
 
+function restartGame(){
+    clearInterval(interval);
+    startTimer();
+
+    moves = 0;
+
+}
+
 function initGame() {
     getRandomPictures()
     shuffleCards()
@@ -10,7 +18,7 @@ function initGame() {
 
 function startTimer(){
     let sec = 0, min = 0;
-    setInterval(function(){
+    interval = setInterval(function(){
         let timer = document.querySelector(".timer");
         timer.innerHTML = "Timer:" +min+ " Minutes " +sec+ " Seconds";
         sec++;
@@ -22,11 +30,6 @@ function startTimer(){
     },1000);
 }
 
-function moveCounter() {
-    let move_count = document.querySelector(".move_count")
-    moves++;
-    move_count.innerHTML = moves + " Moves";
-}
 
 
 function getRandomPictures() {
