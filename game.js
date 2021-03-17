@@ -11,7 +11,7 @@ function initGame() {
 
 function startTimer(){
     let sec = 0, min = 0;
-    setInterval(function(){
+    window.interval = setInterval(function(){
         let timer = document.querySelector(".timer");
         timer.innerHTML = min + " Minutes " + sec + " Seconds";
         sec++;
@@ -135,5 +135,10 @@ function restartGame() {
     card.children[0].classList.add('hidden')
     card.children[0].classList.remove('matched')
     }
+    let timer = document.querySelector(".timer");
+    timer.innerHTML = 0 + " Minutes " + 0 + " Seconds";
+    let move_count = document.querySelector(".move_count")
+    move_count.innerHTML = 0 + " Moves";
+    clearInterval(interval)
     initGame();
 }
