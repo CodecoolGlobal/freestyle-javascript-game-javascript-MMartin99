@@ -110,5 +110,30 @@ function initLeftClick() {
 
 
 function gameWin() {
-    console.log('win')
+    window.popup = document.getElementById("popup1")
+    let finalTime = document.querySelector('.timer').innerHTML
+    let finalMoves = document.querySelector('.move_count').innerHTML
+    popup.classList.add('show')
+    document.getElementById("finalMove").innerHTML = finalMoves;
+    document.getElementById("totalTime").innerHTML = finalTime;
+    closePopup()
+}
+
+
+function closePopup() {
+    let closeicon = document.querySelector(".close");
+    closeicon.addEventListener("click", function(e){
+    popup.classList.remove("show");
+    initGame();
+    });
+}
+
+function playAgain() {
+    popup.classList.remove("show");
+    let cards = document.querySelectorAll(".card");
+    for (let card of cards) {
+        card.children[0].classList.add('hidden')
+        card.children[0].classList.remove('matched')
+    }
+    initGame();
 }
