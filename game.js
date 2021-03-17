@@ -99,7 +99,7 @@ function initLeftClick() {
                             firstPick.children[0].classList.add('hidden')
                             firstPick.classList.remove('opened')
                             secondPick.classList.remove('opened')
-                        }, 2000)
+                        }, 1500)
                     }
                     openCards = 0
                 }
@@ -111,13 +111,16 @@ function initLeftClick() {
 
 
 function gameWin() {
-    window.popup = document.getElementById("popup1")
-    let finalTime = document.querySelector('.timer').innerHTML
-    let finalMoves = document.querySelector('.move_count').innerHTML
-    popup.classList.add('show')
-    document.getElementById("finalMove").innerHTML = finalMoves;
-    document.getElementById("totalTime").innerHTML = finalTime;
-    closePopup()
+    setTimeout(function() {
+        window.popup = document.getElementById("popup1")
+        let finalTime = document.querySelector('.timer').innerHTML
+        let finalMoves = document.querySelector('.move_count').innerHTML
+        popup.classList.add('show')
+        document.getElementById("finalMove").innerHTML = finalMoves;
+        document.getElementById("totalTime").innerHTML = finalTime;
+        closePopup()
+    }, 2000)
+
 }
 
 
