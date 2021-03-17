@@ -20,6 +20,8 @@ function startTimer(){
             min++;
             sec=0;
         }
+        window.secSave = sec - 1;
+        window.minSave = min;
     },1000);
 }
 
@@ -49,6 +51,7 @@ function moveCounter() {
     let move_count = document.querySelector(".move_count")
     moves++;
     move_count.innerHTML = moves + " Moves";
+    window.movesSave = moves;
 }
 
 
@@ -116,9 +119,12 @@ function gameWin() {
         let finalTime = document.querySelector('.timer').innerHTML
         let finalMoves = document.querySelector('.move_count').innerHTML
         popup.classList.add('show')
+        highscore()
         document.getElementById("finalMove").innerHTML = finalMoves;
         document.getElementById("totalTime").innerHTML = finalTime;
+        document.getElementById("highscore").innerHTML = localStorage.min + " Minutes " + localStorage.sec + " Seconds<br>" + localStorage.moves + " Moves";
         closePopup()
+        // localStorage.min+ " Minutes " +localstorage.sec+ " Seconds <br>" +localstorage.moves+ "Moves"
     }, 2000)
 
 }
@@ -154,4 +160,40 @@ function restartGame() {
     move_count.innerHTML = moves + " Moves";
     clearInterval(interval)
     initGame();
+}
+
+
+function highscore() {
+    let currentMin = minSave;
+    let currentSec = secSave;
+    let currentMoves = movesSave;
+
+    if (localStorage.sec) {
+        let highscoreMin = localStorage.getItem("min");
+        let highscoreSec = localStorage.getItem("sec");
+        let HighscoreMoves = localStorage.getItem("moves");
+
+        if (highscoreMin > currentMin) {
+            localStorage.min = currentMin;
+            localStorage.sec = currentSec;
+            localStorage.moves = currentMoves;
+        }
+        else if (highscoreMin == currentMin && highscoreSec > currentSec) {
+            localStorage.min = currentMin;
+            localStorage.sec = currentSec;
+            localStorage.moves = currentMoves;
+        }
+        else if (highscoreMin == currentMin && highscoreSec == currentSec){
+            if (HighscoreMoves > currentMoves) {
+                localStorage.min = currentMin;
+                localStorage.sec = currentSec;
+                localStorage.moves = currentMoves;
+            }
+        }
+    }
+    else{
+        localStorage.min = currentMin
+        localStorage.sec = currentSec
+        localStorage.moves = currentMoves
+    }
 }
