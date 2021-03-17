@@ -24,7 +24,6 @@ function startTimer(){
 }
 
 
-
 function getRandomPictures() {
     let randomNumbers = []
     for (let i = 0; randomNumbers.length < 8; i++) {
@@ -71,27 +70,36 @@ function initLeftClick() {
                 if ((card.children[0].classList.contains('matched'))) {matchedCards++}
                 if (!(card.children[0].classList.contains('hidden'))) {openCards++}
             }
-            if (openCards - matchedCards !== 2 && !(event.currentTarget.children[0].classList.contains('matched'))) {
+            if (openCards - matchedCards !== 2 && !(event.currentTarget.children[0].classList.contains('matched')) &&
+                !(event.currentTarget.classList.contains('opened'))) {
                 event.currentTarget.children[0].classList.remove('hidden');
                 counter++;
                 if (counter === 1) {startTimer()}
                 if (counter % 2 === 1) {
-                    window.firstPick = event.currentTarget.children[0];
+                    window.firstPick = event.currentTarget;
+                    firstPick.classList.add('opened')
                 }
                 if (counter % 2 === 0) {
-                    window.secondPick = event.currentTarget.children[0]
+                    window.secondPick = event.currentTarget;
+                    secondPick.classList.add('opened')
                     moveCounter()
 
-                    if (firstPick.attributes[1].value === secondPick.attributes[1].value) {
-                        firstPick.classList.add('matched')
-                        secondPick.classList.add('matched')
+                    if (firstPick.children[0].attributes[1].value === secondPick.children[0].attributes[1].value) {
+                        firstPick.children[0].classList.add('matched')
+                        secondPick.children[0].classList.add('matched')
+                        firstPick.classList.remove('opened')
+                        secondPick.classList.remove('opened')
+                        firstPick.classList.add('matchedCard')
+                        secondPick.classList.add('matchedCard')
                         matchedCards += 2
                     }
                     else {
                         setTimeout(function() {
-                            secondPick.classList.add('hidden')
-                            firstPick.classList.add('hidden')
-                        }, 2000)
+                            secondPick.children[0].classList.add('hidden')
+                            firstPick.children[0].classList.add('hidden')
+                            firstPick.classList.remove('opened')
+                            secondPick.classList.remove('opened')
+                        }, 1500)
                     }
                     openCards = 0
                 }
@@ -103,13 +111,16 @@ function initLeftClick() {
 
 
 function gameWin() {
-    window.popup = document.getElementById("popup1")
-    let finalTime = document.querySelector('.timer').innerHTML
-    let finalMoves = document.querySelector('.move_count').innerHTML
-    popup.classList.add('show')
-    document.getElementById("finalMove").innerHTML = finalMoves;
-    document.getElementById("totalTime").innerHTML = finalTime;
-    closePopup()
+    setTimeout(function() {
+        window.popup = document.getElementById("popup1")
+        let finalTime = document.querySelector('.timer').innerHTML
+        let finalMoves = document.querySelector('.move_count').innerHTML
+        popup.classList.add('show')
+        document.getElementById("finalMove").innerHTML = finalMoves;
+        document.getElementById("totalTime").innerHTML = finalTime;
+        closePopup()
+    }, 2000)
+
 }
 
 
@@ -132,15 +143,15 @@ function playAgain() {
 function restartGame() {
     let cards = document.querySelectorAll(".card");
     for (let card of cards) {
-    card.children[0].classList.add('hidden')
-    card.children[0].classList.remove('matched')
+        card.classList.remove('matchedCard')
+        card.children[0].classList.add('hidden')
+        card.children[0].classList.remove('matched')
     }
     let timer = document.querySelector(".timer");
     timer.innerHTML = 0 + " Minutes " + 0 + " Seconds";
     let move_count = document.querySelector(".move_count")
     moves = 0
     move_count.innerHTML = moves + " Moves";
-
     clearInterval(interval)
     initGame();
 }
