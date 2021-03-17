@@ -72,27 +72,43 @@ function initLeftClick() {
     let counter = 0;
     for (let card of cards) {
         card.onclick = function(event) {
-            moveCounter()
-            event.currentTarget.children[0].classList.remove('hidden');
-            counter++;
-            if (counter === 1) {startTimer()}
-            if (counter % 2 === 1) {
-                window.firstPick = event.currentTarget.children[0];
+            let openCards = 0
+            let matchedCards = 0
+            for (let card of cards) {
+                if ((card.children[0].classList.contains('matched'))) {matchedCards++}
+                if (!(card.children[0].classList.contains('hidden'))) {openCards++}
             }
-            if (counter % 2 === 0) {
-                window.secondPick = event.currentTarget.children[0]
+            if (openCards - matchedCards !== 2 && !(event.currentTarget.children[0].classList.contains('matched'))) {
+                moveCounter()
+                event.currentTarget.children[0].classList.remove('hidden');
+                counter++;
+                if (counter === 1) {startTimer()}
+                if (counter % 2 === 1) {
+                    window.firstPick = event.currentTarget.children[0];
+                }
+                if (counter % 2 === 0) {
+                    window.secondPick = event.currentTarget.children[0]
 
-                if (firstPick.attributes[1].value === secondPick.attributes[1].value) {
-                    firstPick.classList.add('matched')
-                    secondPick.classList.add('matched')
-                }
-                else {
-                    setTimeout(function() {
-                        secondPick.classList.add('hidden')
-                        firstPick.classList.add('hidden')
-                    }, 3000)
+                    if (firstPick.attributes[1].value === secondPick.attributes[1].value) {
+                        firstPick.classList.add('matched')
+                        secondPick.classList.add('matched')
+                        matchedCards += 2
+                    }
+                    else {
+                        setTimeout(function() {
+                            secondPick.classList.add('hidden')
+                            firstPick.classList.add('hidden')
+                        }, 2000)
+                    }
+                    openCards = 0
                 }
             }
+            if (matchedCards === 16) {gameWin()}
         }
     }
+}
+
+
+function gameWin() {
+    console.log('win')
 }
