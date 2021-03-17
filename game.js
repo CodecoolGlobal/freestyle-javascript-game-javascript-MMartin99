@@ -138,7 +138,9 @@ function restartGame() {
     let timer = document.querySelector(".timer");
     timer.innerHTML = 0 + " Minutes " + 0 + " Seconds";
     let move_count = document.querySelector(".move_count")
-    move_count.innerHTML = 0 + " Moves";
+    moves = 0
+    move_count.innerHTML = moves + " Moves";
+
     clearInterval(interval)
     initGame();
 }
