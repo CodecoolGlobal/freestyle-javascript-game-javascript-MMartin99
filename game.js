@@ -1,13 +1,6 @@
 initGame();
 let moves = 0;
 
-function restartGame(){
-    clearInterval(interval);
-    startTimer();
-
-    moves = 0;
-
-}
 
 function initGame() {
     getRandomPictures()
@@ -18,9 +11,9 @@ function initGame() {
 
 function startTimer(){
     let sec = 0, min = 0;
-    interval = setInterval(function(){
+    setInterval(function(){
         let timer = document.querySelector(".timer");
-        timer.innerHTML = "Timer:" +min+ " Minutes " +sec+ " Seconds";
+        timer.innerHTML = min + " Minutes " + sec + " Seconds";
         sec++;
 
         if(sec == 60){
@@ -110,5 +103,37 @@ function initLeftClick() {
 
 
 function gameWin() {
-    console.log('win')
+    window.popup = document.getElementById("popup1")
+    let finalTime = document.querySelector('.timer').innerHTML
+    let finalMoves = document.querySelector('.move_count').innerHTML
+    popup.classList.add('show')
+    document.getElementById("finalMove").innerHTML = finalMoves;
+    document.getElementById("totalTime").innerHTML = finalTime;
+    closePopup()
+}
+
+
+function closePopup() {
+    let closeIcon = document.querySelector(".close");
+    closeIcon.addEventListener("click", function(e){
+    popup.classList.remove("show");
+    restartGame();
+    });
+}
+
+
+function playAgain() {
+    popup.classList.remove("show");
+    restartGame();
+
+}
+
+
+function restartGame() {
+    let cards = document.querySelectorAll(".card");
+    for (let card of cards) {
+    card.children[0].classList.add('hidden')
+    card.children[0].classList.remove('matched')
+    }
+    initGame();
 }
