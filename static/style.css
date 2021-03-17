@@ -134,3 +134,16 @@ img.hidden {
 	color: #ffffff;
 	border-radius: 5px;
 }
+
+.move_count {
+    display: inline-block;
+    background-color: white;
+    margin-left: 400px;
+    font-size: large;
+}
+
+.timer {
+    display: inline-block;
+    background-color: white;
+    font-size: large;
+}
