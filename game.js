@@ -92,6 +92,7 @@ function initLeftClick() {
                     if (firstPick.attributes[1].value === secondPick.attributes[1].value) {
                         firstPick.classList.add('matched')
                         secondPick.classList.add('matched')
+                        matchedCards += 2
                     }
                     else {
                         setTimeout(function() {
@@ -102,6 +103,12 @@ function initLeftClick() {
                     openCards = 0
                 }
             }
+            if (matchedCards === 16) {gameWin()}
         }
     }
+}
+
+
+function gameWin() {
+    console.log('win')
 }
