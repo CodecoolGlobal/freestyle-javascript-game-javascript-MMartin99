@@ -70,7 +70,8 @@ function initLeftClick() {
                 if ((card.children[0].classList.contains('matched'))) {matchedCards++}
                 if (!(card.children[0].classList.contains('hidden'))) {openCards++}
             }
-            if (openCards - matchedCards !== 2 && !(event.currentTarget.children[0].classList.contains('matched'))) {
+            if (openCards - matchedCards !== 2 && !(event.currentTarget.children[0].classList.contains('matched')) &&
+                !(event.currentTarget.classList.contains('opened'))) {
                 event.currentTarget.children[0].classList.remove('hidden');
                 counter++;
                 if (counter === 1) {startTimer()}
