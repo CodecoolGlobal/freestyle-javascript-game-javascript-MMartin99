@@ -72,7 +72,6 @@ function initLeftClick() {
                 if (!(card.children[0].classList.contains('hidden'))) {openCards++}
             }
             if (openCards - matchedCards !== 2 && !(event.currentTarget.children[0].classList.contains('matched'))) {
-                moveCounter()
                 event.currentTarget.children[0].classList.remove('hidden');
                 counter++;
                 if (counter === 1) {startTimer()}
@@ -81,6 +80,7 @@ function initLeftClick() {
                 }
                 if (counter % 2 === 0) {
                     window.secondPick = event.currentTarget.children[0]
+                    moveCounter()
 
                     if (firstPick.attributes[1].value === secondPick.attributes[1].value) {
                         firstPick.classList.add('matched')
