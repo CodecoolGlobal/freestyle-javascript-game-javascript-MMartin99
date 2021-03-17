@@ -23,7 +23,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     width: 80%;
-    border: 4px solid black;
+    border: 5px solid black;
     border-radius: 15px;
     margin: auto;
     background-color: #a7a72f;
@@ -45,13 +45,13 @@ body {
 
 .opened {
 	background-color: #8b5512;
-	border-color: darkolivegreen;
+	border-color: darkslategrey;
 }
 
 
 .matchedCard {
-	background-color: #0f4e8d;
-	border-color: saddlebrown;
+	background-color: #2f73b8;
+	border-color: darkolivegreen;
 }
 
 
