@@ -72,12 +72,22 @@ body {
 .opened {
 	background-color: #8b5512;
 	border-color: darkslategrey;
+	animation-name: openCards;
+	animation-duration: .75s;
 }
 
 
 .matchedCard {
 	background-color: #2f73b8;
 	border-color: darkolivegreen;
+	animation-name: matchedCard;
+	animation-duration: .75s;
+}
+
+
+.unmatchedCard {
+	animation-name: unmatchedCard;
+	animation-duration: .75s;
 }
 
 
@@ -89,11 +99,6 @@ body {
 img.hidden {
     visibility: hidden;
 }
-
-.reset {
-
-}
-
 
 
 .overlay {
@@ -160,9 +165,6 @@ img.hidden {
 	opacity: 100 !important;
 }
 
-#starRating li {
-	display: inline-block;
-}
 
 #play-again {
 	background-color: #141214;
@@ -174,4 +176,75 @@ img.hidden {
 	font-family: 'Gloria Hallelujah', cursive;
 	color: #ffffff;
 	border-radius: 5px;
+}
+
+
+@keyframes openCards {
+	from {
+		transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+		animation-timing-function: ease-in;
+		opacity: 0;
+	}
+
+	40% {
+		transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+		animation-timing-function: ease-in;
+	}
+
+	60% {
+		transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+		opacity: 1;
+	}
+
+	80% {
+		transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+	}
+
+	to {
+		transform: perspective(400px);
+	}
+}
+
+@keyframes unmatchedCard {
+	from {
+		transform: scale3d(1, 1, 1);
+	}
+
+	30% {
+		transform: scale3d(1.25, 0.75, 1);
+	}
+
+	40% {
+		transform: scale3d(0.75, 1.25, 1);
+	}
+
+	50% {
+		transform: scale3d(1.15, 0.85, 1);
+	}
+
+	65% {
+		transform: scale3d(.95, 1.05, 1);
+	}
+
+	75% {
+		transform: scale3d(1.05, .95, 1);
+	}
+
+	to {
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+@keyframes matchedCard {
+	from {
+		transform: scale3d(1, 1, 1);
+	}
+
+	50% {
+		transform: scale3d(1.2, 1.2, 1.2);
+	}
+
+	to {
+		transform: scale3d(1, 1, 1);
+	}
 }
