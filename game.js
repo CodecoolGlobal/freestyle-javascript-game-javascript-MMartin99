@@ -113,7 +113,7 @@ function initLeftClick() {
                     openCards = 0;
                 }
             }
-            if (matchedCards === 16) {gameWin();};
+            if (matchedCards === 16) {gameWin();}
         }
     }
 }
@@ -131,7 +131,6 @@ function gameWin() {
         document.getElementById("highscore").innerHTML = localStorage.min + " Minutes " + localStorage.sec + " Seconds<br>" + localStorage.moves + " Moves";
         closePopup();
     }, 2000);
-
 }
 
 
@@ -147,7 +146,6 @@ function closePopup() {
 function playAgain() {
     popup.classList.remove("show");
     restartGame();
-
 }
 
 
@@ -157,6 +155,8 @@ function restartGame() {
         card.classList.remove('matchedCard');
         card.children[0].classList.add('hidden');
         card.children[0].classList.remove('matched');
+        card.classList.remove('opened');
+        card.classList.remove('unmatchedCard');
     };
     let timer = document.querySelector(".timer");
     timer.innerHTML = 0 + " Minutes " + 0 + " Seconds";
